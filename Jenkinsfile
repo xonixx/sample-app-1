@@ -36,13 +36,13 @@ pipeline {
         always {
             junit 'service_1/target/surefire-reports/**/*.xml'
             junit 'service_2/target/surefire-reports/**/*.xml'
+
+            // TODO email on failed only
+            emailext subject: 'Test', body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], to: 'xonixx+j@gmail.com'
         }
         success {
             archiveArtifacts artifacts: 'service_1/target/**/*.jar', fingerprint: true
             archiveArtifacts artifacts: 'service_2/target/**/*.jar', fingerprint: true
-        }
-        always {
-            emailext subject: 'Test', body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], to: 'xonixx+j@gmail.com'
         }
     }
 }
