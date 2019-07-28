@@ -41,5 +41,8 @@ pipeline {
             archiveArtifacts artifacts: 'service_1/target/**/*.jar', fingerprint: true
             archiveArtifacts artifacts: 'service_2/target/**/*.jar', fingerprint: true
         }
+        always {
+            emailext subject: 'Test', body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], to: 'xonixx+j@gmail.com'
+        }
     }
 }
