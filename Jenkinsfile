@@ -38,7 +38,7 @@ pipeline {
             junit 'service_2/target/surefire-reports/**/*.xml'
 
             // TODO email on failed only
-            emailext subject: 'Test', body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], to: 'xonixx+j@gmail.com'
+            emailext subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!', body: 'A Test EMail', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], to: 'xonixx+j@gmail.com'
         }
         success {
             archiveArtifacts artifacts: 'service_1/target/**/*.jar', fingerprint: true
