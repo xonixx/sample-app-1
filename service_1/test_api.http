@@ -1,0 +1,12 @@
+POST http://localhost:34701/api/v1/calc
+Content-Type: application/json
+
+{
+  "operation": "add",
+  "arguments": [
+    2.2,
+    5
+  ]
+}
+
+###

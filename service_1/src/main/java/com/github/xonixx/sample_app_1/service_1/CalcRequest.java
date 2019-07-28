@@ -1,5 +1,7 @@
 package com.github.xonixx.sample_app_1.service_1;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.util.CollectionUtils;
@@ -11,9 +13,13 @@ import static com.github.xonixx.sample_app_1.service_1.ValidationError.validatio
 
 @Getter
 @Builder
+@JsonDeserialize(builder = CalcRequest.CalcRequestBuilder.class)
 public class CalcRequest implements Validateable {
   private final CalcOperation operation;
   private final List<BigDecimal> arguments;
+
+  @JsonPOJOBuilder(withPrefix = "")
+  public static class CalcRequestBuilder {}
 
   @Override
   public void validate(ValidationErrorHandler onValidationError) {

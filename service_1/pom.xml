@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.github.xonixx.sample_app_1</groupId>
 	<artifactId>service_1</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<name>service_1</name>
 	<description>Micro-service #1</description>
 
