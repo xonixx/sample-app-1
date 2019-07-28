@@ -31,6 +31,7 @@ pipeline {
             }
         }
     }
+  }
     post {
         always {
             junit 'service_1/target/surefire-reports/**/*.xml'
@@ -41,5 +42,4 @@ pipeline {
             archiveArtifacts artifacts: 'service_2/target/**/*.jar', fingerprint: true
         }
     }
-  }
 }
