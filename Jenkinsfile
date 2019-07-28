@@ -1,7 +1,9 @@
 pipeline {
   agent any
   tools {
-    jdk 'jdk11' // https://stackoverflow.com/a/55244659
+  // https://stackoverflow.com/a/55244659
+  // https://stackoverflow.com/a/53375151
+    jdk 'jdk11'
   }
   stages {
     stage('service_1') {
