@@ -1,3 +1,5 @@
+###
+
 POST http://localhost:34701/api/v1/calc
 Content-Type: application/json
 
@@ -6,6 +8,43 @@ Content-Type: application/json
   "arguments": [
     2.2,
     5
+  ]
+}
+
+###
+
+POST http://localhost:34701/api/v1/calc
+Content-Type: application/json
+
+{
+  "operation": "sqrt",
+  "arguments": [
+    25,1
+  ]
+}
+
+###
+
+POST http://localhost:34701/api/v1/calc
+Content-Type: application/json
+
+{
+  "operation": "add",
+  "arguments": [
+    2.2,
+    5,
+    66
+  ]
+}
+
+###
+
+POST http://localhost:34701/api/v1/calc
+Content-Type: application/json
+
+{
+  "arguments": [
+    66
   ]
 }
 

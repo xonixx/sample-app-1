@@ -28,7 +28,7 @@ public class CalcRequest implements Validateable {
     } else {
       if (!argsSizeIs(operation.argsCount)) {
         onValidationError.onValidationError(
-            validationError(operation + " requires " + operation.argsCount + " arguments"));
+            validationError(operation + " requires " + operation.argsCount + " argument(s)"));
       }
     }
   }
