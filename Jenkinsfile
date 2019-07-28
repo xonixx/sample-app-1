@@ -1,9 +1,7 @@
 pipeline {
   agent any
-  environment {
-  }
   tools {
-    jdk 'jdk11'
+    jdk 'jdk11' // https://stackoverflow.com/a/55244659
   }
   stages {
     stage('service_1') {
