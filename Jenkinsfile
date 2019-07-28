@@ -31,5 +31,15 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            junit 'service_1/target/surefire-reports/**/*.xml'
+            junit 'service_2/target/surefire-reports/**/*.xml'
+        }
+        success {
+            archiveArtifacts artifacts: 'service_1/target/**/*.jar', fingerprint: true
+            archiveArtifacts artifacts: 'service_2/target/**/*.jar', fingerprint: true
+        }
+    }
   }
 }
