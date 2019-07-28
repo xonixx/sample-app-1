@@ -1,4 +1,4 @@
-package com.github.xonixx.sample_app_1.service_1;
+package com.github.xonixx.sample_app_1.service_2;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class Service1ApplicationTests {
+public class Service2ApplicationTests {
 
 	@Test
 	public void contextLoads() {
