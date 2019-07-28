@@ -7,20 +7,20 @@ pipeline {
     stage('service_1') {
         stage('test & build') {
           steps {
-            sh '
+            sh '''
             cd service_1
             ./mvnw clean package
-            '
+            '''
           }
         }
     }
     stage('service_2') {
         stage('test & build') {
           steps {
-            sh '
+            sh '''
             cd service_2
             ./mvnw clean package
-            '
+            '''
           }
         }
     }
