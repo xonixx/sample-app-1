@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    JAVA_HOME='/usr/lib/jvm/zulu-12-amd64/'
+    JAVA_HOME='/usr/lib/jvm/zulu-12-amd64'
   }
   stages {
     stage('service_1') {
