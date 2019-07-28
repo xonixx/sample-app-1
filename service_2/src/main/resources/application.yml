@@ -1,3 +1,6 @@
 server:
   address: 127.0.0.1
   port: 34702
+
+app:
+  calcServiceUrl: "http://127.0.0.1:34701/api/v1/calc"
