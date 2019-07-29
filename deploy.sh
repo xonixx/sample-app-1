@@ -24,13 +24,13 @@ echo
 echo "DEPLOY..."
 echo
 
-scp "$APP.conf" "target/$APP.jar" -P $PORT $USER@$SERV:~/
+scp -o StrictHostKeyChecking=no "$APP.conf" "target/$APP.jar" -P $PORT $USER@$SERV:~/
 
 echo
 echo "RESTART..."
 echo
 
-ssh -p $PORT $USER@$SERV "
+ssh -o StrictHostKeyChecking=no -p $PORT $USER@$SERV "
 if [ ! -f /etc/init.d/$APP ]
 then
     sudo ln -s /home/$USER/$APP.jar /etc/init.d/$APP
