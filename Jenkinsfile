@@ -23,7 +23,9 @@ pipeline {
             stage('deploy') {
               steps {
                 sh '''
-                    bash ./deploy.sh service_1 $SSH_CREDS
+                    cp -f "$SSH_CREDS" /tmp/1.key
+                    cat /tmp/1.key
+                    bash ./deploy.sh service_1 /tmp/1.key
                 '''
               }
             }
