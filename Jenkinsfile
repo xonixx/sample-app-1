@@ -24,7 +24,6 @@ pipeline {
               steps {
                 sh '''
                     cp -f "$SSH_CREDS" /tmp/1.key
-                    cat /tmp/1.key
                     bash ./deploy.sh service_1 /tmp/1.key
                 '''
               }
@@ -45,7 +44,6 @@ pipeline {
               steps {
                 sh '''
                     cp -f "$SSH_CREDS" /tmp/1.key
-                    cat /tmp/1.key
                     bash ./deploy.sh service_2 /tmp/1.key
                 '''
               }
@@ -55,6 +53,8 @@ pipeline {
   }
     post {
         always {
+            sh 'rm -f /tmp/1.key'
+
             // TODO email on failed only
             emailext(
                 subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
