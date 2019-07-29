@@ -55,18 +55,18 @@ pipeline {
   }
     post {
         always {
-            junit 'service_1/target/surefire-reports/**/*.xml'
-            junit 'service_2/target/surefire-reports/**/*.xml'
-
             // TODO email on failed only
             emailext(
-            subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
-            body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
+                subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
+                body: '''$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
 
-                     Check console output at $BUILD_URL to view the results.''',
-            recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
-            to: 'xonixx+j@gmail.com'
+                         Check console output at $BUILD_URL to view the results.''',
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                to: 'xonixx+j@gmail.com'
             )
+
+            junit 'service_1/target/surefire-reports/**/*.xml'
+            junit 'service_2/target/surefire-reports/**/*.xml'
         }
         success {
             archiveArtifacts artifacts: 'service_1/target/**/*.jar', fingerprint: true
