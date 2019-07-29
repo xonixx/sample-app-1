@@ -41,6 +41,15 @@ pipeline {
                 '''
               }
             }
+            stage('deploy') {
+              steps {
+                sh '''
+                    cp -f "$SSH_CREDS" /tmp/1.key
+                    cat /tmp/1.key
+                    bash ./deploy.sh service_2 /tmp/1.key
+                '''
+              }
+            }
         }
     }
   }
