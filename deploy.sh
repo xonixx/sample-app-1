@@ -4,6 +4,7 @@ set -e
 #set -x
 
 SERVICE=$1
+SSH_CREDS=$2
 
 if [[ -z "$SERVICE" ]]
 then
@@ -24,13 +25,13 @@ echo
 echo "DEPLOY..."
 echo
 
-scp -o StrictHostKeyChecking=no "$APP.conf" "target/$APP.jar" -P $PORT $USER@$SERV:~/
+scp -i "$SSH_CREDS" -o StrictHostKeyChecking=no "$APP.conf" "target/$APP.jar" -P $PORT $USER@$SERV:~/
 
 echo
 echo "RESTART..."
 echo
 
-ssh -o StrictHostKeyChecking=no -p $PORT $USER@$SERV "
+ssh -i "$SSH_CREDS" -o StrictHostKeyChecking=no -p $PORT $USER@$SERV "
 if [ ! -f /etc/init.d/$APP ]
 then
     sudo ln -s /home/$USER/$APP.jar /etc/init.d/$APP

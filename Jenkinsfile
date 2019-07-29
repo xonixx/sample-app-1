@@ -5,6 +5,9 @@ pipeline {
   // https://stackoverflow.com/a/53375151
     jdk 'jdk11'
   }
+  environment {
+      SSH_CREDS = credentials('apps1')
+  }
   stages {
     stage('service_1') {
         stages {
@@ -20,7 +23,7 @@ pipeline {
             stage('deploy') {
               steps {
                 sh '''
-                    bash ./deploy.sh service_1
+                    bash ./deploy.sh service_1 $SSH_CREDS
                 '''
               }
             }
