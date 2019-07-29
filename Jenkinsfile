@@ -12,15 +12,14 @@ pipeline {
               steps {
                 sh 'java -version'
                 sh '''
-                cd service_1
-                ./mvnw clean package
+                    cd service_1
+                    ./mvnw clean package
                 '''
               }
             }
             stage('deploy') {
               steps {
                 sh '''
-                    cd service_1
                     bash ./deploy.sh service_1
                 '''
               }
@@ -32,8 +31,8 @@ pipeline {
             stage('test & build') {
               steps {
                 sh '''
-                cd service_2
-                ./mvnw clean package
+                    cd service_2
+                    ./mvnw clean package
                 '''
               }
             }
