@@ -17,6 +17,14 @@ pipeline {
                 '''
               }
             }
+            stage('deploy') {
+              steps {
+                sh '''
+                    cd service_1
+                    bash ./deploy.sh service_1
+                '''
+              }
+            }
         }
     }
     stage('service_2') {
