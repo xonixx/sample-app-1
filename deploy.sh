@@ -25,7 +25,7 @@ echo
 echo "DEPLOY..."
 echo
 
-scp -i "$SSH_CREDS" -o StrictHostKeyChecking=no "$APP.conf" "target/$APP.jar" -P $PORT $USER@$SERV:~/
+scp -i "$SSH_CREDS" -o StrictHostKeyChecking=no -P $PORT "$APP.conf" "target/$APP.jar" $USER@$SERV:~/
 
 echo
 echo "RESTART..."
