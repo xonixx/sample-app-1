@@ -55,6 +55,9 @@ pipeline {
         always {
             sh 'rm -f /tmp/1.key'
 
+            // TODO Slack integration
+            // TODO Manual step - confirm to run a step
+
             // TODO email on failed only
             emailext(
                 subject: '$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!',
