@@ -28,7 +28,7 @@ pipeline {
 //                 '''
 //               }
                 steps {
-                    sh 'mvn dockerfile:build dockerfile:push'
+                    sh './mvnw dockerfile:build dockerfile:push'
                 }
             }
         }
