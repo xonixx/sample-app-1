@@ -21,12 +21,15 @@ pipeline {
               }
             }
             stage('deploy') {
-              steps {
-                sh '''
-                    cp -f "$SSH_CREDS" /tmp/1.key
-                    bash ./deploy.sh service_1 /tmp/1.key
-                '''
-              }
+//               steps {
+//                 sh '''
+//                     cp -f "$SSH_CREDS" /tmp/1.key
+//                     bash ./deploy.sh service_1 /tmp/1.key
+//                 '''
+//               }
+                steps {
+                    sh 'mvn dockerfile:build dockerfile:push'
+                }
             }
         }
     }
@@ -40,14 +43,14 @@ pipeline {
                 '''
               }
             }
-            stage('deploy') {
-              steps {
-                sh '''
-                    cp -f "$SSH_CREDS" /tmp/1.key
-                    bash ./deploy.sh service_2 /tmp/1.key
-                '''
-              }
-            }
+//             stage('deploy') {
+//               steps {
+//                 sh '''
+//                     cp -f "$SSH_CREDS" /tmp/1.key
+//                     bash ./deploy.sh service_2 /tmp/1.key
+//                 '''
+//               }
+//             }
         }
     }
   }
