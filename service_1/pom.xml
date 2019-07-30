@@ -14,7 +14,8 @@
 
     <properties>
         <java.version>11</java.version>
-        <docker.image.prefix>sample_app_1</docker.image.prefix>
+        <docker.registry>localhost</docker.registry>
+        <docker.registry.port>5000</docker.registry.port>
     </properties>
 
     <dependencies>
@@ -53,7 +54,7 @@
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.4.10</version>
                 <configuration>
-                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
+			<repository>${docker.registry}:${docker.registry.port}/${project.artifactId}</repository>
                 </configuration>
             </plugin>
         </plugins>
