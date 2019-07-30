@@ -53,8 +53,29 @@
                 <artifactId>dockerfile-maven-plugin</artifactId>
                 <version>1.4.10</version>
                 <configuration>
-                    <repository>${docker.image.prefix}/${project.artifactId}</repository>
+                    <!-- https://itnext.io/tag-your-docker-images-while-building-with-maven-915c8043d2e0 -->
+                    <!-- GIT_COMMIT will be set by Jenkins -->
+                    <tag>${env.GIT_COMMIT}</tag>
+                    <repository>localhost:5000/${docker.image.prefix}/${project.artifactId}</repository>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.7</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echoproperties />
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
