@@ -28,7 +28,10 @@ pipeline {
 //                 '''
 //               }
                 steps {
-                    sh './mvnw dockerfile:build dockerfile:push'
+                    sh '''
+                        cd service_1
+                        ./mvnw dockerfile:build dockerfile:push
+                    '''
                 }
             }
         }
