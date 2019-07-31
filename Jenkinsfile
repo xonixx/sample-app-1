@@ -14,6 +14,7 @@ pipeline {
             stage('test & build') {
               steps {
                 sh 'java -version'
+                sh 'groups'
                 sh '''
                     cd service_1
                     ./mvnw clean package
