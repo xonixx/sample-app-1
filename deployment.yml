@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-1
+  labels:
+    app: service-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-1
+  template:
+    metadata:
+      labels:
+        app: service-1
+    spec:
+      containers:
+        - name: service-1
+          image: localhost:5000/service-1:latest
+          ports:
+            - name: service-1
+              containerPort: 34701
+              hostPort: 34701
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-2
+  labels:
+    app: service-2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: service-2
+  template:
+    metadata:
+      labels:
+        app: service-2
+    spec:
+      containers:
+        - name: service-2
+          image: localhost:5000/service-2:latest
+          ports:
+            - name: service-2
+              containerPort: 34702
+              hostPort: 34702
