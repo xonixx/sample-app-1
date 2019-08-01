@@ -9,13 +9,13 @@ pipeline {
       SSH_CREDS = credentials('apps1')
   }
   stages {
-    stage('service_1') {
+    stage('service-1') {
         stages {
             stage('test & build') {
               steps {
                 sh 'java -version'
                 sh '''
-                    cd service_1
+                    cd service-1
                     ./mvnw clean package
                 '''
               }
@@ -24,7 +24,7 @@ pipeline {
               steps {
                 sh '''
                     cp -f "$SSH_CREDS" /tmp/1.key
-                    bash ./deploy.sh service_1 /tmp/1.key
+                    bash ./deploy.sh service-1 /tmp/1.key
                 '''
               }
             }
@@ -68,11 +68,11 @@ pipeline {
                 to: 'xonixx+j@gmail.com'
             )
 
-            junit 'service_1/target/surefire-reports/**/*.xml'
+            junit 'service-1/target/surefire-reports/**/*.xml'
             junit 'service_2/target/surefire-reports/**/*.xml'
         }
         success {
-            archiveArtifacts artifacts: 'service_1/target/**/*.jar', fingerprint: true
+            archiveArtifacts artifacts: 'service-1/target/**/*.jar', fingerprint: true
             archiveArtifacts artifacts: 'service_2/target/**/*.jar', fingerprint: true
         }
     }

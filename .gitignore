@@ -1,4 +1,4 @@
-service_1/HELP.md
+service-1/HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**

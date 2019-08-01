@@ -7,9 +7,9 @@
 		<artifactId>root</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>service_2</artifactId>
+	<artifactId>service-2</artifactId>
 	<version>0.0.1</version>
-	<name>service_2</name>
+	<name>service-2</name>
 	<description>Micro-service #2</description>
 
 	<properties>
