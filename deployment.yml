@@ -47,3 +47,31 @@ spec:
             - name: service-2
               containerPort: 34702
               hostPort: 34702
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-1
+spec:
+  ports:
+    - port: 34701
+      targetPort: 34701
+      protocol: TCP
+  selector:
+    app: service-1
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-2
+spec:
+  ports:
+    - port: 34702
+      targetPort: 34702
+      protocol: TCP
+  selector:
+    app: service-2
