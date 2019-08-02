@@ -22,7 +22,9 @@ echo
 echo "DEPLOY... $SERVICE:$GIT_COMMIT"
 echo
 
-ssh -e -i "$SSH_CREDS" -o StrictHostKeyChecking=no -p $PORT $USER@$SERV "
+ssh -i "$SSH_CREDS" -o StrictHostKeyChecking=no -p $PORT $USER@$SERV "
+set -e
+set -x
 GIT_REVISION=$1
 kubectl run service_1 --image=xonixx/service_1:$GIT_COMMIT --replicas=1 --port=34701
 kubectl expose deployment service_1 --port=34701 --type=LoadBalancer
