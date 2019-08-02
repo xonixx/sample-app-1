@@ -26,6 +26,7 @@ ssh -i "$SSH_CREDS" -o StrictHostKeyChecking=no -p $PORT $USER@$SERV "
 set -e
 set -x
 GIT_REVISION=$1
-kubectl run service_1 --image=xonixx/service_1:$GIT_COMMIT --replicas=1 --port=34701
-kubectl expose deployment service_1 --port=34701 --type=LoadBalancer
+kubectl delete deployment $SERVICE || true
+kubectl run $SERVICE --image=xonixx/$SERVICE:$GIT_COMMIT --replicas=1 --port=34701
+kubectl expose deployment $SERVICE --port=34701 --type=LoadBalancer
 "
