@@ -32,10 +32,7 @@ pipeline {
                     sh '''
                         cd service_1
                         ./mvnw dockerfile:build dockerfile:push
-                    '''
-                    sh '''
-                        kubectl run service_1 --image=xonixx/service_1:$GIT_COMMIT --replicas=1 --port=34701
-                        kubectl expose deployment service_1 --port=34701 --type=LoadBalancer
+//                     bash ./deploy_k8s.sh service_1 /tmp/1.key
                     '''
                 }
             }
