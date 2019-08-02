@@ -56,7 +56,8 @@
                     <!-- https://itnext.io/tag-your-docker-images-while-building-with-maven-915c8043d2e0 -->
                     <!-- GIT_COMMIT will be set by Jenkins -->
                     <tag>${env.GIT_COMMIT}</tag>
-                    <repository>localhost:5000/${docker.image.prefix}/${project.artifactId}</repository>
+<!--                    <repository>localhost:5000/${docker.image.prefix}/${project.artifactId}</repository>-->
+                    <repository>xonixx/${project.artifactId}</repository>
                 </configuration>
             </plugin>
             <plugin>
