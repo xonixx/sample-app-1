@@ -22,13 +22,13 @@ pipeline {
               }
             }
             stage('deploy') {
-//               steps {
+                steps {
+                    sh '''
+                        cp -f "$SSH_CREDS" /tmp/1.key
+                    '''
 //                 sh '''
-//                     cp -f "$SSH_CREDS" /tmp/1.key
 //                     bash ./deploy.sh service_1 /tmp/1.key
 //                 '''
-//               }
-                steps {
                     sh '''
                         cd service_1
                         ./mvnw dockerfile:build dockerfile:push
