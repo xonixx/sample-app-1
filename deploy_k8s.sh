@@ -28,5 +28,6 @@ set -x
 GIT_REVISION=$1
 kubectl delete deployment $SERVICE || true
 kubectl run $SERVICE --image=xonixx/$SERVICE:$GIT_COMMIT --replicas=1 --port=34701
-kubectl expose deployment $SERVICE --port=34701 --type=LoadBalancer
+kubectl delete service $SERVICE || true
+kubectl expose deployment $SERVICE --port=34701 --type=NodePort # minikube doesn't support LoadBalancer yet
 "
