@@ -11,6 +11,6 @@ public class InfraController {
   @ResponseBody
   @GetMapping("/ping")
   public String ping() {
-    return "OK";
+    return "OK1";
   }
 }
