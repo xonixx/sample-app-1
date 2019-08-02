@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-#set -x
+set -x
 
 SERVICE=$1
 SSH_CREDS=$2
