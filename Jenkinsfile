@@ -32,7 +32,7 @@ pipeline {
                     sh '''
                         cd service_1
                         ./mvnw dockerfile:build dockerfile:push
-//                     bash ./deploy_k8s.sh service_1 /tmp/1.key
+                        bash ../deploy_k8s.sh service_1 /tmp/1.key
                     '''
                 }
             }
