@@ -30,4 +30,5 @@ kubectl delete service $SERVICE || true
 kubectl delete deployment $SERVICE || true
 kubectl create deployment $SERVICE --image=xonixx/$SERVICE:$GIT_COMMIT
 kubectl expose deployment $SERVICE --port=34701 --type=LoadBalancer
+echo \"$SERVICE is running on: \$(minikube service $SERVICE --url)\"
 "

@@ -48,14 +48,21 @@ pipeline {
                 '''
               }
             }
-//             stage('deploy') {
-//               steps {
+            stage('deploy') {
+              steps {
+                    sh '''
+                        cp -f "$SSH_CREDS" /tmp/1.key
+                    '''
 //                 sh '''
-//                     cp -f "$SSH_CREDS" /tmp/1.key
 //                     bash ./deploy.sh service_2 /tmp/1.key
 //                 '''
-//               }
-//             }
+                    sh '''
+                        cd service_2
+                        ./mvnw dockerfile:build dockerfile:push
+                        bash ../deploy_k8s.sh service-2 /tmp/1.key
+                    '''
+              }
+            }
         }
     }
   }
