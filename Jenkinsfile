@@ -42,11 +42,10 @@ pipeline {
         stages {
             stage('test & build') {
               steps {
-                sh ''
-//                 sh '''
-//                     cd service_2
-//                     ./mvnw clean package
-//                 '''
+                sh '''
+                    cd service_2
+                    ./mvnw clean package
+                '''
               }
             }
 //             stage('deploy') {
