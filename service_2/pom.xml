@@ -7,9 +7,9 @@
 		<artifactId>root</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>service_2</artifactId>
+	<artifactId>service-2</artifactId>
 	<version>0.0.1</version>
-	<name>service_2</name>
+	<name>service-2</name>
 	<description>Micro-service #2</description>
 
 	<properties>
@@ -41,6 +41,18 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
 					<executable>true</executable>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.spotify</groupId>
+				<artifactId>dockerfile-maven-plugin</artifactId>
+				<version>1.4.10</version>
+				<configuration>
+					<!-- https://itnext.io/tag-your-docker-images-while-building-with-maven-915c8043d2e0 -->
+					<!-- GIT_COMMIT will be set by Jenkins -->
+					<tag>${env.GIT_COMMIT}</tag>
+					<!--                    <repository>localhost:5000/${docker.image.prefix}/${project.artifactId}</repository>-->
+					<repository>xonixx/${project.artifactId}</repository>
 				</configuration>
 			</plugin>
 		</plugins>
