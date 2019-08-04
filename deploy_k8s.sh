@@ -15,7 +15,7 @@ fi
 
 USER=apps1
 SERV=31.172.137.40
-PORT=60022
+SSH_PORT=60022
 
 mydir=$(cd $(dirname $0); pwd)
 
@@ -23,7 +23,7 @@ echo
 echo "DEPLOY... $SERVICE:$GIT_COMMIT"
 echo
 
-ssh -i "$SSH_CREDS" -o StrictHostKeyChecking=no -p $PORT $USER@$SERV "
+ssh -i "$SSH_CREDS" -o StrictHostKeyChecking=no -p $SSH_PORT $USER@$SERV "
 set -e
 set -x
 GIT_REVISION=$1
