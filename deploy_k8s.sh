@@ -26,8 +26,8 @@ ssh -i "$SSH_CREDS" -o StrictHostKeyChecking=no -p $PORT $USER@$SERV "
 set -e
 set -x
 GIT_REVISION=$1
+kubectl delete service $SERVICE || true
 kubectl delete deployment $SERVICE || true
 kubectl run $SERVICE --image=xonixx/$SERVICE:$GIT_COMMIT --replicas=1 --port=34701
-kubectl delete service $SERVICE || true
-kubectl expose deployment $SERVICE --port=34701 --type=NodePort # minikube doesn't support LoadBalancer yet
+kubectl expose deployment $SERVICE --port=34701 --type=LoadBalancer
 "
