@@ -28,6 +28,6 @@ set -x
 GIT_REVISION=$1
 kubectl delete service $SERVICE || true
 kubectl delete deployment $SERVICE || true
-kubectl run $SERVICE --image=xonixx/$SERVICE:$GIT_COMMIT --replicas=1 --port=34701
+kubectl create deployment $SERVICE --image=xonixx/$SERVICE:$GIT_COMMIT
 kubectl expose deployment $SERVICE --port=34701 --type=LoadBalancer
 "
