@@ -42,6 +42,7 @@ pipeline {
         stages {
             stage('test & build') {
               steps {
+                ssh ''
 //                 sh '''
 //                     cd service_2
 //                     ./mvnw clean package
