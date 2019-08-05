@@ -13,7 +13,7 @@ pipeline {
         stages {
             stage('test & build') {
               steps {
-                slackSend "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+                slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
                 sh 'java -version'
                 sh 'groups'
                 sh '''
@@ -88,10 +88,10 @@ pipeline {
             junit 'service_2/target/surefire-reports/**/*.xml'
         }
         failure {
-            slackSend "Build FAIL - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+            slackSend message: "Build FAIL - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
         }
         success {
-            slackSend "Build SUCCESS - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+            slackSend message: "Build SUCCESS - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
             archiveArtifacts artifacts: 'service_1/target/**/*.jar', fingerprint: true
             archiveArtifacts artifacts: 'service_2/target/**/*.jar', fingerprint: true
         }
