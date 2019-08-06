@@ -35,6 +35,7 @@ pipeline {
                         '''
                     }
                     timeout(time: 10, unit: 'MINUTES') {
+                        // this needs setting up webhook in SonarQube
                         waitForQualityGate abortPipeline: true
                     }
                 }
@@ -65,6 +66,24 @@ pipeline {
                     ./mvnw clean package
                 '''
               }
+            }
+            stage('Sonarqube') {
+                environment {
+                    scannerHome = tool 'sonarqube-scanner'
+                }
+                steps {
+                    withSonarQubeEnv('sonarqube-1') {
+                        sh '''${scannerHome}/bin/sonar-scanner \
+                        -Dsonar.projectKey=sample-app-1        \
+                        -Dsonar.sources=./service_2/src        \
+                        -Dsonar.java.binaries=./service_2/target/classes,./service_2/target/test-classes
+                        '''
+                    }
+                    timeout(time: 10, unit: 'MINUTES') {
+                        // this needs setting up webhook in SonarQube
+                        waitForQualityGate abortPipeline: true
+                    }
+                }
             }
             stage('deploy') {
               steps {
