@@ -11,6 +11,17 @@ pipeline {
   stages {
     stage('service_1') {
         stages {
+            stage('test & build') {
+              steps {
+                slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
+                sh 'java -version'
+                sh 'groups'
+                sh '''
+                    cd service_1
+                    ./mvnw clean package
+                '''
+              }
+            }
             stage('Sonarqube') {
                 environment {
                     scannerHome = tool 'sonarqube-scanner'
@@ -23,17 +34,6 @@ pipeline {
                         waitForQualityGate abortPipeline: true
                     }
                 }
-            }
-            stage('test & build') {
-              steps {
-                slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
-                sh 'java -version'
-                sh 'groups'
-                sh '''
-                    cd service_1
-                    ./mvnw clean package
-                '''
-              }
             }
             stage('deploy') {
                 steps {
