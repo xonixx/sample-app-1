@@ -11,6 +11,19 @@ pipeline {
   stages {
     stage('service_1') {
         stages {
+            stage('Sonarqube') {
+                environment {
+                    scannerHome = tool 'sonarqube-scanner'
+                }
+                steps {
+                    withSonarQubeEnv('sonarqube-1') {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                    timeout(time: 10, unit: 'MINUTES') {
+                        waitForQualityGate abortPipeline: true
+                    }
+                }
+            }
             stage('test & build') {
               steps {
                 slackSend message: "Build Started - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)"
