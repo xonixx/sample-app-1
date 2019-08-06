@@ -12,6 +12,6 @@ public class TestController {
   @ResponseBody
   @GetMapping(value = "/", produces = MediaType.TEXT_HTML_VALUE)
   public String root() {
-    return "<h1>Edison 2";
+    return "<h1>Edison 2.1";
   }
 }
