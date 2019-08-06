@@ -1,8 +1,8 @@
 pipeline {
   agent any
   tools {
-  // https://stackoverflow.com/a/55244659
-  // https://stackoverflow.com/a/53375151
+    // https://stackoverflow.com/a/55244659
+    // https://stackoverflow.com/a/53375151
     jdk 'jdk11'
   }
   environment {
@@ -44,11 +44,6 @@ pipeline {
                 steps {
                     sh '''
                         cp -f "$SSH_CREDS" /tmp/1.key
-                    '''
-//                 sh '''
-//                     bash ./deploy.sh service_1 /tmp/1.key
-//                 '''
-                    sh '''
                         cd service_1
                         ./mvnw dockerfile:build dockerfile:push
                         bash ../deploy_k8s.sh service-1 /tmp/1.key 34701
@@ -89,11 +84,6 @@ pipeline {
               steps {
                     sh '''
                         cp -f "$SSH_CREDS" /tmp/1.key
-                    '''
-//                 sh '''
-//                     bash ./deploy.sh service_2 /tmp/1.key
-//                 '''
-                    sh '''
                         cd service_2
                         ./mvnw dockerfile:build dockerfile:push
                         bash ../deploy_k8s.sh service-2 /tmp/1.key 34702
@@ -106,9 +96,6 @@ pipeline {
     post {
         always {
             sh 'rm -f /tmp/1.key'
-
-            // TODO Slack integration
-            // TODO Manual step - confirm to run a step
 
             // TODO email on failed only
             emailext(
