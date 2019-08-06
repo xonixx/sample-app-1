@@ -26,7 +26,6 @@ echo
 ssh -i "$SSH_CREDS" -o StrictHostKeyChecking=no -p $SSH_PORT $USER@$SERV "
 set -e
 set -x
-GIT_REVISION=$1
 kubectl delete service $SERVICE || true
 kubectl delete deployment $SERVICE || true
 kubectl create deployment $SERVICE --image=xonixx/$SERVICE:$GIT_COMMIT
