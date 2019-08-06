@@ -3,6 +3,10 @@
 set -e
 set -x
 
+USER=apps1
+SERV=31.172.137.40
+SSH_PORT=60022
+
 SERVICE=$1
 SSH_CREDS=$2
 PORT=$3
@@ -12,12 +16,6 @@ then
   >&2 echo "Must provide service"
   exit 1
 fi
-
-USER=apps1
-SERV=31.172.137.40
-SSH_PORT=60022
-
-mydir=$(cd $(dirname $0); pwd)
 
 echo
 echo "DEPLOY... $SERVICE:$GIT_COMMIT"
