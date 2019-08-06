@@ -43,9 +43,9 @@ pipeline {
             stage('deploy') {
                 steps {
                     sh '''
-                        cp -f "$SSH_CREDS" /tmp/1.key
                         cd service_1
                         ./mvnw dockerfile:build dockerfile:push
+                        cp -f "$SSH_CREDS" /tmp/1.key
                         bash ../deploy_k8s.sh service-1 /tmp/1.key 34701
                     '''
                 }
@@ -83,9 +83,9 @@ pipeline {
             stage('deploy') {
               steps {
                     sh '''
-                        cp -f "$SSH_CREDS" /tmp/1.key
                         cd service_2
                         ./mvnw dockerfile:build dockerfile:push
+                        cp -f "$SSH_CREDS" /tmp/1.key
                         bash ../deploy_k8s.sh service-2 /tmp/1.key 34702
                     '''
               }
